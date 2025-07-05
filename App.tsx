@@ -1,10 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Navigator from './src/navigator/Navigator';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import {persistor, store} from './src/store/store';
 import {PersistGate} from 'redux-persist/integration/react';
+
 const App = () => {
   return (
     <Provider store={store}>

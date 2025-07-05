@@ -2,19 +2,20 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SplashScreen from '../screens/SplashScreen';
-import SignIn from '../screens/SignIn';
+import HomeScreen from '../screens/HomeScreen';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SignUpScreen from '../screens/SignUpScreen';
-import BottomTab from '../screens/BottomTab';
-import DetailScreen from '../screens/DetailScreen';
-import CartScreen from '../screens/CartScreen';
-import OrderScreen from '../screens/OrderScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ManagePropertyTabs from '../screens/ManageProperty/ManagePropertyTabs';
+import ManageTenureTabs from '../screens/ManageTenure/ManageTenureTabs';
+import ExitRequestTabs from '../screens/ExitRequest/ExitRequestTabs';
+import TenantBookingsTabs from '../screens/TenantBookings/TenantBookingsTabs';
+import OccupancyPnLTabs from '../screens/OccupancyPnL/OccupancyPnLTabs';
 const Tab = createBottomTabNavigator();
 const Navigator = () => {
   const Stack = createNativeStackNavigator();
@@ -28,30 +29,33 @@ const Navigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="SignIn"
-          component={SignIn}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-        <Stack.Screen
-          name="BottomTab"
-          component={BottomTab}
+          name="HomeScreen"
+          component={HomeScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="DetailScreen"
-          component={DetailScreen}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="OrderScreen"
-          component={OrderScreen}
+          name="ManagePropertyTabs"
+          component={ManagePropertyTabs}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="ProfileScreen"
-          component={ProfileScreen}
+          name="ManageTenureTabs"
+          component={ManageTenureTabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ExitRequestTabs"
+          component={ExitRequestTabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="TenantBookingsTabs"
+          component={TenantBookingsTabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OccupancyPnLTabs"
+          component={OccupancyPnLTabs}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

@@ -1,28 +1,62 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {Image} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const SplashScreen = ({navigation}: any) => {
-  setTimeout(() => {
-    navigation.navigate('SignIn');
-  }, 2000);
+  const slideAnim = useRef(new Animated.Value(-300)).current;
+
+  useEffect(() => {
+    Animated.timing(slideAnim, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+
+    const timer = setTimeout(() => {
+      navigation.replace('HomeScreen');
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Image
-        source={require('../assets/logo.jpg')}
-        style={{width: 200, height: 200, borderRadius: 10}}
-      />
-    </View>
+    <LinearGradient
+      colors={['#7a00ff', '#ff00c8']}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 1}}
+      style={styles.gradient}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor="#7a00ff" />
+        <Animated.View style={{transform: [{translateX: slideAnim}]}}>
+          <Text style={styles.title}>GetSetHome</Text>
+        </Animated.View>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
 export default SplashScreen;
 
 const styles = StyleSheet.create({
+  gradient: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#d48cce',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: '#fff',
+    fontFamily: 'Poppins-SemiBold',
   },
 });
